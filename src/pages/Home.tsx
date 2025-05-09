@@ -5,17 +5,17 @@ const orders = [
   {
     id: crypto.randomUUID(),
     orderNumber: '#001',
-    date: Date.now()
+    date: Date.now(),
   },
   {
     id: crypto.randomUUID(),
     orderNumber: '#002',
-    date: Date.now()
+    date: Date.now(),
   },
   {
     id: crypto.randomUUID(),
     orderNumber: '#003',
-    date: Date.now()
+    date: Date.now(),
   },
 ];
 
@@ -36,14 +36,15 @@ export function Home() {
           </>
         )}
 
-        {!isLoading && orders.map(order => (
-          <div key={order.id} className="flex flex-col border p-4 rounded-md">
-            <strong>Pedido {order.orderNumber}</strong>
-            <small className="text-muted-foreground">
-              Realizado em: {Intl.DateTimeFormat('pt-br').format(order.date)}
-            </small>
-          </div>
-        ))}
+        {!isLoading &&
+          orders.map((order) => (
+            <div key={order.id} className="flex flex-col border p-4 rounded-md">
+              <strong>Pedido {order.orderNumber}</strong>
+              <small className="text-muted-foreground">
+                Realizado em: {Intl.DateTimeFormat('pt-br').format(order.date)}
+              </small>
+            </div>
+          ))}
       </div>
     </div>
   );

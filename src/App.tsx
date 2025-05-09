@@ -15,7 +15,7 @@ export function App() {
 
         <Tooltip content="Sair">
           <Button variant="secondary" size="icon" className="rounded-full">
-            <LogOutIcon className='w4 h-4' />
+            <LogOutIcon className="w4 h-4" />
           </Button>
         </Tooltip>
       </div>

@@ -35,13 +35,9 @@ export function Tooltip({ children, content, asChild = true }: ITooltipProps) {
   return (
     <TooltipProvider>
       <TooltipRoot>
-        <TooltipTrigger asChild={asChild}>
-          {children}
-        </TooltipTrigger>
+        <TooltipTrigger asChild={asChild}>{children}</TooltipTrigger>
 
-        <TooltipContent>
-          {content}
-        </TooltipContent>
+        <TooltipContent>{content}</TooltipContent>
       </TooltipRoot>
     </TooltipProvider>
   );
