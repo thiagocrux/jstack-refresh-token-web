@@ -1,16 +1,19 @@
 import { BrowserRouter } from 'react-router-dom';
 
-import { Router } from './Router';
 import { Appbar } from './components/Appbar';
+import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { Router } from './Router';
 
 export function App() {
   return (
-    <ThemeProvider>
-      <Appbar />
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <Appbar />
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
