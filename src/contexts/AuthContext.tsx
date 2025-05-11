@@ -14,7 +14,9 @@ interface IAuthContextValue {
 export const AuthContext = createContext({} as IAuthContextValue);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [signedIn, setSignedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState(() => {
+    return !!localStorage.getItem('live019:accessToken');
+  });
 
   const signIn = useCallback(async (email: string, password: string) => {
     const { accessToken, refreshToken } = await AuthService.signIn({
@@ -22,7 +24,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       password,
     });
 
-    console.log({ accessToken, refreshToken });
+    localStorage.setItem('live019:accessToken', accessToken);
+    localStorage.setItem('live019:refreshToken', refreshToken);
     setSignedIn(true);
   }, []);
 
