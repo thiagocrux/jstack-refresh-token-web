@@ -10,6 +10,7 @@ interface AuthProviderProps {
 interface IAuthContextValue {
   signedIn: boolean;
   signIn: (email: string, password: string) => Promise<void>;
+  signOut: () => void;
 }
 
 export const AuthContext = createContext({} as IAuthContextValue);
@@ -30,9 +31,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setSignedIn(true);
   }, []);
 
+  const signOut = useCallback(() => {
+    localStorage.clear();
+    setSignedIn(false);
+  }, []);
+
   const value: IAuthContextValue = {
     signedIn,
     signIn,
+    signOut,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
