@@ -21,6 +21,8 @@ interface ISignUpResponse {
   email: string;
 }
 
+interface IRefreshToken extends ISignInResponse {}
+
 export class AuthService {
   static async signUp({ name, email, password }: ISignUpDTO) {
     const { data } = await httpClient.post<ISignUpResponse>('/signup', {
@@ -36,6 +38,14 @@ export class AuthService {
     const { data } = await httpClient.post<ISignInResponse>('/signin', {
       email,
       password,
+    });
+
+    return data;
+  }
+
+  static async refreshToken(refreshToken: string) {
+    const { data } = await httpClient.post<IRefreshToken>('/refresh-token', {
+      refreshToken,
     });
 
     return data;
